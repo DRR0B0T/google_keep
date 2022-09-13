@@ -3,20 +3,23 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
+import AppsRoundedIcon from '@mui/icons-material/AppsRounded';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import GridViewIcon from '@mui/icons-material/GridView';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import {SearchBox} from "../SearchBox";
 import {createTheme, Link, ThemeProvider} from "@mui/material";
+
 
 const theme = createTheme({
   palette: {
     primary: {main: '#fff', },
+    secondary: {main: '#909397',}
   },
 });
 export  function PrimarySearchAppBar() {
@@ -85,9 +88,7 @@ export  function PrimarySearchAppBar() {
       >
         <MenuItem>
           <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <Badge badgeContent={4} color="error">
-              <MailIcon />
-            </Badge>
+              <RefreshIcon />
           </IconButton>
           <p>Messages</p>
         </MenuItem>
@@ -97,9 +98,7 @@ export  function PrimarySearchAppBar() {
               aria-label="show 17 new notifications"
               color="inherit"
           >
-            <Badge badgeContent={17} color="error">
-              <NotificationsIcon />
-            </Badge>
+              <GridViewIcon />
           </IconButton>
           <p>Notifications</p>
         </MenuItem>
@@ -126,7 +125,7 @@ export  function PrimarySearchAppBar() {
             <IconButton
                 size="large"
                 edge="start"
-                color="inherit"
+                color="secondary"
                 aria-label="open drawer"
             >
               <MenuIcon />
@@ -160,19 +159,29 @@ export  function PrimarySearchAppBar() {
            <SearchBox/>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="error">
-                  <MailIcon />
-                </Badge>
+              <IconButton size="large" aria-label="show 4 new mails" color="secondary">
+                  <RefreshIcon />
               </IconButton>
               <IconButton
                   size="large"
                   aria-label="show 17 new notifications"
-                  color="inherit"
+                  color="secondary"
               >
-                <Badge badgeContent={17} color="error">
-                  <NotificationsIcon />
-                </Badge>
+                  <GridViewIcon />
+              </IconButton>
+              <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="secondary"
+              >
+                  <SettingsOutlinedIcon/>
+              </IconButton>
+              <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="secondary"
+              >
+                  <AppsRoundedIcon/>
               </IconButton>
               <IconButton
                   size="large"
@@ -181,7 +190,7 @@ export  function PrimarySearchAppBar() {
                   aria-controls={menuId}
                   aria-haspopup="true"
                   onClick={handleProfileMenuOpen}
-                  color="inherit"
+                  color="secondary"
               >
                 <AccountCircle />
               </IconButton>

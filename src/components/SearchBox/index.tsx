@@ -32,7 +32,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   top: 2
 }));
 
-const CloseIconWrapper = styled('div')(({theme}) => ({
+const CloseIconWrapper = styled('div')(() => ({
   position: 'absolute',
   display: 'flex',
   alignItems: 'center',
@@ -59,7 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
     [theme.breakpoints.up('md')]: {
       width: '50ch',
-      height: '28px',
+      height: '30px',
     },
   },
 }));
@@ -69,7 +69,7 @@ export const SearchBox: React.FC = () => {
         <SearchIconWrapper  >
           <SearchIcon
             sx={{
-              fill: '#000',
+              fill: '#909397',
               zIndex: 5,
               width: 24,
               height: 24,
@@ -90,7 +90,7 @@ export const SearchBox: React.FC = () => {
         />
         <CloseIconWrapper>
           <CloseIcon sx={{
-            fill: '#000',
+            fill: '#909397',
             zIndex: 5,
             width: 24,
             height: 24,
