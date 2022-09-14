@@ -4,7 +4,7 @@ import {alpha, styled} from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import CloseIcon from '@mui/icons-material/Close';
 
-const Search = styled('div')(({ theme }) => ({
+const Search = styled('div')(({theme}) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -20,7 +20,7 @@ const Search = styled('div')(({ theme }) => ({
   },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled('div')(({theme}) => ({
   padding: theme.spacing(1, 1),
   marginLeft: theme.spacing(1),
   position: 'absolute',
@@ -40,10 +40,10 @@ const CloseIconWrapper = styled('div')(() => ({
   width: 40,
   height: 40,
   right: 0,
-   top: 2
+  top: 2
 }))
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled(InputBase)(({theme}) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
@@ -66,27 +66,27 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export const SearchBox: React.FC = () => {
   return (
       <Search>
-        <SearchIconWrapper  >
+        <SearchIconWrapper>
           <SearchIcon
-            sx={{
-              fill: '#909397',
-              zIndex: 5,
-              width: 24,
-              height: 24,
-              borderRadius: '50%',
-              '&:hover': {
-                backgroundColor: '#e3e5e6',
-                cursor: 'pointer',
-                padding: 1,
-                width: 38,
-                height: 38,
-              }
-            }}
+              sx={{
+                fill: '#909397',
+                zIndex: 5,
+                width: 24,
+                height: 24,
+                borderRadius: '50%',
+                '&:hover': {
+                  backgroundColor: '#e3e5e6',
+                  cursor: 'pointer',
+                  padding: 1,
+                  width: 38,
+                  height: 38,
+                }
+              }}
           />
         </SearchIconWrapper>
         <StyledInputBase
             placeholder="Поиск…"
-            inputProps={{ 'aria-label': 'search' }}
+            inputProps={{'aria-label': 'search'}}
         />
         <CloseIconWrapper>
           <CloseIcon sx={{

@@ -1,6 +1,7 @@
 import './App.scss';
-import {PrimarySearchAppBar} from "./components/Header";
+import {MiniDrawer} from './components/Dashboard'
 import Box from "@mui/material/Box";
+import * as React from "react";
 
 
 function App() {
@@ -8,9 +9,8 @@ function App() {
     <Box  sx={{
       width: '100%',
       height: '100%',
-      backgroundColor: 'primary.dark',
     }}>
-      <PrimarySearchAppBar/>
+      <MiniDrawer />
     </Box>
   );
 }
