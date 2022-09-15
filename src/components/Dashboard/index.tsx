@@ -6,7 +6,6 @@ import MuiAppBar, {AppBarProps as MuiAppBarProps} from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -17,8 +16,9 @@ import {SearchBox} from "../SearchBox";
 import {IconsHeader} from "../IconsHeader";
 import {ThemeProvider} from "@mui/material";
 import theme from "../../theme";
+import {Workspace} from "../Workspace";
 
-const drawerWidth = 240;
+const drawerWidth = 270;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -30,6 +30,7 @@ const openedMixin = (theme: Theme): CSSObject => ({
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
+
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -38,7 +39,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
   width: `calc(${theme.spacing(7)} + 1px)`,
 
   [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
+    width: `calc(${theme.spacing(9)} + 1px)`,
   },
 });
 
@@ -133,24 +134,38 @@ export function MiniDrawer() {
             </Box>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer
+           sx={{
+             '& .MuiDrawer-paper' : {
+               ...(!open && {border: 'none'}),
+             }
+           }}
+            variant="permanent" open={open}>
           <DrawerHeader>
             <IconButton onClick={handleDrawerClose}>
               {themeMd.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </DrawerHeader>
-          <Divider />
           <List
               sx={{
                 // selected box style for all container
-              ...(!open && {ml:1}),
+                pl: '3px',
+
+                '&& .MuiListItemButton-gutters ': {
+                  p: '8px 15px'
+                },
+
                 // selected and (selected + hover) states
                 '&& .Mui-selected, && .Mui-selected:hover': {
+                  mr: 0,
                   bgcolor: '#FEEFC3',
                   borderRadius: '0 25px 25px 0',
-                  border: '1px solid #202124',
                   // selected style when open === false
-                  ...(!open && {borderRadius: '50%', width: 50, height: 50,  p: '5px 12px'}),
+                  ...(!open && {borderRadius: '50%', width: 50,
+                   } ),
+                  ...(open && {'&& .MuiListItemButton-gutters ': {
+                      width: drawerWidth,
+                    },}),
                   '&, & .MuiListItemIcon-root': {
                     color: '#202124',
                   },
@@ -167,13 +182,13 @@ export function MiniDrawer() {
               }}
               onMouseLeave={()=>setOpen(false)}
               onMouseEnter={()=>setOpen(true)}>
-            <MainListItems open={open}/>
+            <MainListItems />
           </List>
 
         </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Box component="main" sx={{ flexGrow: 1, p: 3, height: '100vh' }}>
           <DrawerHeader />
-          6446
+          <Workspace />
         </Box>
         </Box>
       </ThemeProvider>

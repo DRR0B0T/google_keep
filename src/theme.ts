@@ -14,6 +14,7 @@ const theme = createTheme({
       main: red.A400,
     },
   },
+
   components: {
     // Name of the component
     MuiList: {
