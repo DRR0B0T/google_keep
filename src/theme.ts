@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
+
 // A custom theme for this app
 const theme = createTheme({
   palette: {
@@ -11,16 +12,25 @@ const theme = createTheme({
       main: '#5F6368',
     },
     error: {
-      main: red.A400,
+      main: '#202124',
     },
   },
 
   components: {
     // Name of the component
+    MuiButton: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+        },
+      },
+    },
     MuiList: {
 
       styleOverrides: {
         // Name of the slot
+
         root: {
           // Some CSS
         },
