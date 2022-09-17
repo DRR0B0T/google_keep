@@ -127,8 +127,7 @@ export function MiniDrawer() {
 
             <SearchBox/>
             <Box sx={{
-              position: 'absolute',
-              right: 30
+
             }}>
             {IconsHeader}
             </Box>

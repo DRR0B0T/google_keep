@@ -2,7 +2,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import * as React from "react";
 import {alpha, styled} from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
+import Tooltip from "@mui/material/Tooltip";
 import CloseIcon from '@mui/icons-material/Close';
+import IconButton from "@mui/material/IconButton";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import GridViewIcon from "@mui/icons-material/GridView";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 
 const Search = styled('div')(({theme}) => ({
   position: 'relative',
@@ -20,33 +25,11 @@ const Search = styled('div')(({theme}) => ({
   },
 }));
 
-const SearchIconWrapper = styled('div')(({theme}) => ({
-  padding: theme.spacing(1, 1),
-  marginLeft: theme.spacing(1),
-  position: 'absolute',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: 40,
-  height: 40,
-  top: 2
-}));
-
-const CloseIconWrapper = styled('div')(() => ({
-  position: 'absolute',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: 40,
-  height: 40,
-  right: 0,
-  top: 2
-}))
-
 const StyledInputBase = styled(InputBase)(({theme}) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
+    position: 'relative',
+    padding: theme.spacing(1, 1, 1, 5),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
@@ -58,53 +41,71 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
       boxShadow: 'inset 1px 1px 0 rgb(0 0 0 / 10%), inset -1px -1px 0 rgb(0 0 0 / 7%)',
     },
     [theme.breakpoints.up('md')]: {
-      width: '50ch',
+      width: '40ch',
+      height: '30px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '65ch',
       height: '30px',
     },
   },
 }));
 export const SearchBox: React.FC = () => {
   return (
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon
-              sx={{
-                fill: '#909397',
-                zIndex: 5,
-                width: 24,
-                height: 24,
-                borderRadius: '50%',
-                '&:hover': {
-                  backgroundColor: '#e3e5e6',
-                  cursor: 'pointer',
-                  padding: 1,
-                  width: 38,
-                  height: 38,
-                }
-              }}
-          />
-        </SearchIconWrapper>
-        <StyledInputBase
-            placeholder="Поиск…"
-            inputProps={{'aria-label': 'search'}}
-        />
-        <CloseIconWrapper>
-          <CloseIcon sx={{
-            fill: '#909397',
-            zIndex: 5,
-            width: 24,
-            height: 24,
-            borderRadius: '50%',
-            '&:hover': {
-              backgroundColor: '#e3e5e6',
-              cursor: 'pointer',
-              padding: 1,
-              width: 38,
-              height: 38,
-            }
-          }}/>
-        </CloseIconWrapper>
-      </Search>
+    <Search sx={{
+      flex: 1,
+
+    }}>
+      <Tooltip title='Поиск' placement='bottom'>
+        <IconButton size="medium" aria-label="show 4 new mails" color="secondary" sx={{
+          position:'absolute',
+          left: 0,
+          top: 2,
+          zIndex: 1,
+        }}>
+          <SearchIcon/>
+        </IconButton>
+      </Tooltip>
+      <StyledInputBase
+        placeholder="Поиск…"
+        inputProps={{'aria-label': 'search',}}
+      />
+      <Tooltip title='Удалить поисковый запрос' placement='bottom'>
+        <IconButton size="medium" aria-label="show 4 new mails" color="secondary" sx={{
+          position:'absolute',
+          left: {lg: '25em', md: '15em'},
+          top: 2,
+          zIndex: 1,
+
+        }}>
+          <CloseIcon/>
+        </IconButton>
+      </Tooltip>
+
+      <Tooltip title='Обновить' placement='bottom'>
+        <IconButton sx={{ml:20}} size="large" aria-label="show 4 new mails" color="secondary">
+          <RefreshIcon/>
+        </IconButton>
+      </Tooltip>
+      <Tooltip title='Список' placement='bottom'>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="secondary"
+        >
+          <GridViewIcon/>
+        </IconButton>
+      </Tooltip>
+      <Tooltip title='Настройки' placement='bottom'>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="secondary"
+        >
+          <SettingsOutlinedIcon/>
+        </IconButton>
+      </Tooltip>
+    </Search>
   );
 };
 

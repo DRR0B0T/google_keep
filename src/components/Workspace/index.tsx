@@ -4,7 +4,6 @@ import IconButton from '@mui/material/IconButton';
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined';
-import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import AddAlertOutlinedIcon from '@mui/icons-material/AddAlertOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
@@ -13,6 +12,7 @@ import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import UTurnLeftOutlinedIcon from '@mui/icons-material/UTurnLeftOutlined';
 import UTurnRightOutlinedIcon from '@mui/icons-material/UTurnRightOutlined';
+import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
 import {Button,  Typography} from "@mui/material";
 
@@ -118,8 +118,6 @@ export const Workspace: React.FC<IWorkSpace> = () => {
                     <PhotoOutlinedIcon/>
                   </IconButton>
                 </Tooltip>
-
-
               </InputAdornment>
             ),
           }}
@@ -157,7 +155,6 @@ export const Workspace: React.FC<IWorkSpace> = () => {
           placeholder="Заметка..."
           onChange={handleChange}
           InputProps={{
-
             startAdornment: (
               <InputAdornment position="start">
                 <Typography
