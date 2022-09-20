@@ -1,17 +1,18 @@
 import * as React from "react";
 import InputAdornment from "@mui/material/InputAdornment";
-import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import BrushOutlinedIcon from "@mui/icons-material/BrushOutlined";
 import PhotoOutlinedIcon from "@mui/icons-material/PhotoOutlined";
+import Tooltip from "@mui/material/Tooltip";
 import TextField from "@mui/material/TextField";
-import AppContext from "../../App";
+
+interface IInput {
+  setChangeArea:(changeArea:boolean)=>void
+}
 
 
-
-export const Input: React.FC = () => {
-  let {setChangeArea} = React.useContext(AppContext)
+export const Input: React.FC<IInput> = ({setChangeArea}) => {
 
   return (
     <TextField

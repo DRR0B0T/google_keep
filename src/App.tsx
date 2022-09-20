@@ -1,25 +1,25 @@
 import './App.scss';
-import {MiniDrawer} from './components/Dashboard'
+import {Dashboard} from './components/Dashboard'
 import Box from "@mui/material/Box";
 import * as React from "react";
+import AppContext from "./hoc/Context";
 
-const AppContext = React.createContext<{}>({})
 
 
-function App() {
-  const [changeArea, setChangeArea] = React.useState(false)
+
+function App () {
+
 
   return (
    <AppContext.Provider value={{
-     changeArea,
-     setChangeArea
+
    }}>
      <Box
          sx={{
            width: '100%',
            height: '100%',
          }}>
-       <MiniDrawer />
+       <Dashboard />
      </Box>
    </AppContext.Provider>
   );

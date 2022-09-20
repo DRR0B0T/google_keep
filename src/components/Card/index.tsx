@@ -13,13 +13,13 @@ import UTurnLeftOutlinedIcon from "@mui/icons-material/UTurnLeftOutlined";
 import UTurnRightOutlinedIcon from "@mui/icons-material/UTurnRightOutlined";
 import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
-import AppContext from "../../App";
 
+interface ICard {
+  setChangeArea:(changeArea:boolean)=>void
+}
 
-
-export const Card: React.FC = () => {
+export const Card: React.FC<ICard> = ({setChangeArea}) => {
   const [value, setValue] = React.useState<string>('')
-  const {setChangeArea} = React.useContext(AppContext)
 
   const onClearInput = () => {
     setValue('')
@@ -36,26 +36,13 @@ export const Card: React.FC = () => {
     e.target.value = ''
     e.target.value = temp_value
   }
-  const sortRef = React.useRef<HTMLDivElement>(null) as React.MutableRefObject<HTMLInputElement>
-  React.useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent): void => {
-      const path = (event.composedPath && event.composedPath()) //type of path clicked by mouse
-      if (!path.includes(sortRef.current as HTMLDivElement)) {
-        setChangeArea(false)
-      }
-    }
-    document.body.addEventListener('click', handleOutsideClick)
 
-    return () => {
-      document.body.removeEventListener('click', handleOutsideClick)
-    }
-  }, [])
 
   return (
       <TextField
         onFocus={moveCaretAtEnd}
         autoFocus
-        ref={sortRef}
+
         value={value}
         multiline
         minRows={1}
