@@ -6,13 +6,11 @@ import BrushOutlinedIcon from "@mui/icons-material/BrushOutlined";
 import PhotoOutlinedIcon from "@mui/icons-material/PhotoOutlined";
 import Tooltip from "@mui/material/Tooltip";
 import TextField from "@mui/material/TextField";
-
-interface IInput {
-  setChangeArea:(changeArea:boolean)=>void
-}
+import {AppContext} from "../../hoc/Context";
 
 
-export const Input: React.FC<IInput> = ({setChangeArea}) => {
+export const Input: React.FC= () => {
+  const {setChangeArea} = React.useContext(AppContext)
 
   return (
     <TextField
@@ -44,21 +42,17 @@ export const Input: React.FC<IInput> = ({setChangeArea}) => {
             sx={{width: 220, display: 'flex', justifyContent: 'space-between'}}
             position="end">
             <Tooltip title='Создать список' placement='bottom'>
-              <IconButton
-
-                type="button" aria-label="Создать список">
+              <IconButton type="button" aria-label="Создать список">
                 <CheckBoxOutlinedIcon/>
               </IconButton>
             </Tooltip>
             <Tooltip title='Создать заметку с рисунком' placement='bottom'>
-              <IconButton
-                type="button" aria-label="Создать заметку с рисунком">
+              <IconButton type="button" aria-label="Создать заметку с рисунком">
                 <BrushOutlinedIcon/>
               </IconButton>
             </Tooltip>
             <Tooltip title='Создать фотозаметку' placement='bottom'>
-              <IconButton
-                type="button" aria-label="Создать фотозаметку">
+              <IconButton type="button" aria-label="Создать фотозаметку">
                 <PhotoOutlinedIcon/>
               </IconButton>
             </Tooltip>

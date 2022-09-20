@@ -1,13 +1,17 @@
 import * as React from "react";
 
-type AppContextType = {
-
+interface AppContextType {
+  changeArea: boolean;
+  value: string;
+  setValue: (value: string) => void;
+  setChangeArea: (changeArea: boolean) => void;
 }
 
-const IAppContext = {
+export const IAppContext = {
+  value: "",
+  changeArea: false,
+  setValue: () => "",
+  setChangeArea: () => false,
+};
 
-}
-
-const AppContext = React.createContext<AppContextType | null>(IAppContext)
-
-export default AppContext;
+export const AppContext = React.createContext<AppContextType>(IAppContext);

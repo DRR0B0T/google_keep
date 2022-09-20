@@ -1,48 +1,41 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import {Card} from "../Card";
-import { Input } from '../Input';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import { InputText } from "../InputText";
+import { Input } from "../Input";
+import { AppContext } from "../../hoc/Context";
 
+export const Workspace: React.FC = () => {
+  const { changeArea, setChangeArea } = React.useContext(AppContext);
 
-
-export const Workspace: React.FC= () => {
-  const [changeArea, setChangeArea] = React.useState(false)
-
-  const sortRef = React.useRef<HTMLDivElement>(null)
+  const sortRef = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent): void => {
-      const path = (event.composedPath && event.composedPath()) //type of path clicked by mouse
+      const path = event.composedPath && event.composedPath(); //type of path clicked by mouse
       if (!path.includes(sortRef.current as HTMLDivElement)) {
-        setChangeArea(false)
+        setChangeArea(false);
       }
-    }
-    document.body.addEventListener('click', handleOutsideClick)
+    };
+    document.body.addEventListener("click", handleOutsideClick);
 
     return () => {
-      document.body.removeEventListener('click', handleOutsideClick)
-    }
-  }, [])
-
+      document.body.removeEventListener("click", handleOutsideClick);
+    };
+  }, [setChangeArea]);
 
   return (
     <Box
       ref={sortRef}
       component="form"
       sx={{
-        m: '16px auto 32px auto',
+        m: "16px auto 32px auto",
         p: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         width: 600,
       }}
     >
-      {changeArea
-        ? <Card setChangeArea={setChangeArea}
-        />
-        : <Input setChangeArea={setChangeArea}
-        />
-      }
+      {changeArea ? <InputText /> : <Input />}
     </Box>
   );
-}
+};
