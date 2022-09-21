@@ -14,12 +14,13 @@ import { MainListItems } from "./MainListItems";
 import { Logo } from "../Logo";
 import { SearchBox } from "../SearchBox";
 import { IconsHeader } from "../IconsHeader";
-import { ThemeProvider } from "@mui/material";
+import { Grid, ThemeProvider } from "@mui/material";
 import theme from "../../theme";
 import { Workspace } from "../Workspace";
 import { InputText } from "../InputText";
+import { AppContext } from "../../hoc/Context";
 
-const drawerWidth = 270;
+const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -96,6 +97,7 @@ export function Dashboard() {
   const themeMd = useTheme();
 
   const [open, setOpen] = React.useState(false);
+  const { container } = React.useContext(AppContext);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -190,7 +192,13 @@ export function Dashboard() {
         <Box component="main" sx={{ flexGrow: 1, p: 3, height: "100vh" }}>
           <DrawerHeader />
           <Workspace />
-          <InputText />
+          <Grid container p={0} spacing={3} columns={12}>
+            {container.map((note: string, index: number) => (
+              <Grid key={index} container item xs={3}>
+                <InputText drawerWidth={drawerWidth} note={note} />
+              </Grid>
+            ))}
+          </Grid>
         </Box>
       </Box>
     </ThemeProvider>

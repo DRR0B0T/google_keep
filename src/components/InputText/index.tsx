@@ -15,13 +15,24 @@ import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
 import { AppContext } from "../../hoc/Context";
 
-export const InputText: React.FC = () => {
-  const { value, setValue, setChangeArea } = React.useContext(AppContext);
+interface IInputText {
+  drawerWidth?: number;
+  note?: string;
+}
+
+export const InputText: React.FC<IInputText> = ({ drawerWidth, note }) => {
+  const { value, setValue, onSaveStore } = React.useContext(AppContext);
 
   const onClearInput = () => {
     setValue("");
   };
 
+  // const onDebounce = React.useCallback(
+  //   debounce((str: string) => {
+  //     setValue(str);
+  //   }, 250),
+  //   []
+  // );
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
@@ -37,7 +48,7 @@ export const InputText: React.FC = () => {
     <TextField
       onFocus={moveCaretAtEnd}
       autoFocus
-      value={value}
+      value={note}
       multiline
       minRows={1}
       maxRows={15}
@@ -45,13 +56,13 @@ export const InputText: React.FC = () => {
         flex: 1,
         display: "flex",
         flexDirection: "column",
-        width: "inherit",
+        width: "100%",
+        height: "fit-content",
         borderRadius: "5px",
         boxShadow: "-1px 1px 2px 2px #C2C3C3",
         "& fieldset": { border: "none" },
         "& textarea": { pt: "15px", mt: 3, fontSize: ".875rem" },
         "& .MuiInputBase-root": {
-          p: "0.7em",
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
@@ -132,20 +143,8 @@ export const InputText: React.FC = () => {
                 <MoreVertOutlinedIcon fontSize={"small"} />
               </IconButton>
             </Tooltip>
-            {!value ? (
-              <IconButton
-                sx={{
-                  transform: "rotate(90deg)",
-                }}
-                type="button"
-                aria-label="Отменить"
-                onClick={onClearInput}
-                disabled
-              >
-                <UTurnLeftOutlinedIcon fontSize={"small"} />
-              </IconButton>
-            ) : (
-              <Tooltip title="Отменить" placement="bottom">
+            {!drawerWidth && (
+              <>
                 <IconButton
                   sx={{
                     transform: "rotate(90deg)",
@@ -153,33 +152,35 @@ export const InputText: React.FC = () => {
                   type="button"
                   aria-label="Отменить"
                   onClick={onClearInput}
+                  disabled={!value}
                 >
                   <UTurnLeftOutlinedIcon fontSize={"small"} />
                 </IconButton>
-              </Tooltip>
+
+                <Tooltip title="Повторить" placement="bottom">
+                  <IconButton
+                    sx={{ transform: "rotate(270deg)" }}
+                    type="button"
+                    aria-label="Повторить"
+                  >
+                    <UTurnRightOutlinedIcon fontSize={"small"} />
+                  </IconButton>
+                </Tooltip>
+                <Button
+                  sx={{
+                    position: "absolute",
+                    textTransform: "none",
+                    right: 10,
+                    w: 40,
+                    h: 20,
+                    color: "#212121",
+                  }}
+                  onClick={onSaveStore}
+                >
+                  Закрыть
+                </Button>
+              </>
             )}
-            <Tooltip title="Повторить" placement="bottom">
-              <IconButton
-                sx={{ transform: "rotate(270deg)" }}
-                type="button"
-                aria-label="Повторить"
-              >
-                <UTurnRightOutlinedIcon fontSize={"small"} />
-              </IconButton>
-            </Tooltip>
-            <Button
-              sx={{
-                position: "absolute",
-                textTransform: "none",
-                right: 10,
-                w: 40,
-                h: 20,
-                color: "#212121",
-              }}
-              onClick={() => setChangeArea(false)}
-            >
-              Закрыть
-            </Button>
           </InputAdornment>
         ),
       }}

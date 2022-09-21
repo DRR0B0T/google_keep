@@ -5,13 +5,18 @@ import { Input } from "../Input";
 import { AppContext } from "../../hoc/Context";
 
 export const Workspace: React.FC = () => {
-  const { changeArea, setChangeArea } = React.useContext(AppContext);
+  const { changeArea, setChangeArea, value, setValue, setContainer } =
+    React.useContext(AppContext);
 
   const sortRef = React.useRef<HTMLDivElement>(null);
   React.useEffect(() => {
     const handleOutsideClick = (event: MouseEvent): void => {
       const path = event.composedPath && event.composedPath(); //type of path clicked by mouse
       if (!path.includes(sortRef.current as HTMLDivElement)) {
+        if (value) {
+          setContainer((prev: Array<string>) => [value, ...prev]);
+          setValue("");
+        }
         setChangeArea(false);
       }
     };
@@ -20,7 +25,7 @@ export const Workspace: React.FC = () => {
     return () => {
       document.body.removeEventListener("click", handleOutsideClick);
     };
-  }, [setChangeArea]);
+  }, [value]);
 
   return (
     <Box
