@@ -153,15 +153,13 @@ export function Dashboard() {
             sx={{
               // selected box style for all container
               pl: "3px",
-
               "&& .MuiListItemButton-gutters ": {
                 p: "8px 15px",
               },
-
               // selected and (selected + hover) states
               "&& .Mui-selected, && .Mui-selected:hover": {
                 mr: 0,
-                bgcolor: "#FEEFC3",
+                backgroundColor: "#FEEFC3",
                 borderRadius: "0 25px 25px 0",
                 // selected style when open === false
                 ...(!open && { borderRadius: "50%", width: 50 }),
@@ -189,10 +187,10 @@ export function Dashboard() {
             <MainListItems />
           </List>
         </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3, height: "100vh" }}>
+        <Box component="main" sx={{ flexGrow: 1, p: 6, height: "100vh" }}>
           <DrawerHeader />
           <Workspace />
-          <Grid container p={0} spacing={3} columns={12}>
+          <Grid container p={0} spacing={4} columns={12}>
             {container.map((note: string, index: number) => (
               <Grid key={index} container item xs={3}>
                 <InputText drawerWidth={drawerWidth} note={note} />

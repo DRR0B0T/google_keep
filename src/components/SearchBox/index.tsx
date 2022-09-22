@@ -6,6 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
+import { AppContext } from "../../hoc/Context";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -14,6 +15,7 @@ const Search = styled("div")(({ theme }) => ({
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
+
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: "100%",
@@ -26,24 +28,21 @@ const Search = styled("div")(({ theme }) => ({
 const StyledInputBase = styled(TextField)(({ theme }) => ({
   color: "inherit",
   "& fieldset": { border: "none" },
-  "& .MuiInputBase-input": {
-    height: "30px",
-    width: "100%",
-  },
   "& .MuiInputBase-root, & .MuiTextField-root": {
     position: "relative",
+    height: "30px",
+    width: "100%",
     padding: theme.spacing(1, 2, 1, 2),
     // vertical padding + font size from searchIcon
     transition: theme.transitions.create("width"),
-    borderRadius: 5,
-
-    width: "100%",
+    borderRadius: 10,
     backgroundColor: "#F1f3f4",
-    "&:focus": {
+    //change background for input
+    "&.Mui-focused": {
       backgroundColor: "#fff",
-      boxShadow:
-        "inset 1px 1px 0 rgb(0 0 0 / 10%), inset -1px -1px 0 rgb(0 0 0 / 7%)",
+      boxShadow: "-1px 1px 3px 1px #C2C3C3",
     },
+
     [theme.breakpoints.down("md")]: {
       display: "none",
     },
@@ -52,20 +51,30 @@ const StyledInputBase = styled(TextField)(({ theme }) => ({
       height: "46px",
     },
     [theme.breakpoints.up("lg")]: {
-      width: "70ch",
+      width: "75ch",
       height: "46px",
     },
   },
 }));
 
 export const SearchBox: React.FC = () => {
-  // const { value } = React.useContext(AppContext);
+  const { value, container } = React.useContext(AppContext);
+  const [search, setSearch] = React.useState("");
 
-  // const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {};
+  console.log(container);
+
+  const onSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
   return (
-    <Search sx={{ flex: 1 }}>
+    <Search
+      sx={{
+        flex: 1,
+      }}
+    >
       <StyledInputBase
-        // onChange={onSearch}
+        onChange={onSearch}
+        value={search}
         placeholder="Поиск…"
         InputProps={{
           "aria-label": "search",
@@ -86,6 +95,7 @@ export const SearchBox: React.FC = () => {
             <InputAdornment position="end">
               <Tooltip title="Удалить поисковый запрос" placement="bottom">
                 <IconButton
+                  onClick={() => setSearch("")}
                   size="medium"
                   aria-label="show 4 new mails"
                   color="secondary"

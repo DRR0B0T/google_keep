@@ -8,7 +8,7 @@ function App() {
   const [changeArea, setChangeArea] = React.useState<boolean>(false);
   const [value, setValue] = React.useState<string>("");
   const [container, setContainer] = React.useState<Array<string>>([]);
-  console.log(value, container);
+
   //save to store
   const onSaveStore = () => {
     if (value.length) {

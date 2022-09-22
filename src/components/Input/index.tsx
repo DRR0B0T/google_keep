@@ -23,7 +23,7 @@ export const Input: React.FC = () => {
         flex: 1,
         width: "inherit",
         borderRadius: "5px",
-        boxShadow: "-1px 1px 2px 2px #C2C3C3",
+        boxShadow: "-1px 1px 3px 1px #C2C3C3",
 
         "& fieldset": { border: "none" },
         "& .MuiInputBase-root": {

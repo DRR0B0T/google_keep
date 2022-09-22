@@ -59,7 +59,7 @@ export const InputText: React.FC<IInputText> = ({ drawerWidth, note }) => {
         width: "100%",
         height: "fit-content",
         borderRadius: "5px",
-        boxShadow: "-1px 1px 2px 2px #C2C3C3",
+        boxShadow: "-1px 1px 3px 1px #C2C3C3",
         "& fieldset": { border: "none" },
         "& textarea": { pt: "15px", mt: 3, fontSize: ".875rem" },
         "& .MuiInputBase-root": {
@@ -139,7 +139,13 @@ export const InputText: React.FC<IInputText> = ({ drawerWidth, note }) => {
               </IconButton>
             </Tooltip>
             <Tooltip title="Ещё" placement="bottom">
-              <IconButton type="button" aria-label="Ещё">
+              <IconButton
+                sx={{
+                  ...(drawerWidth && { ml: 3 }),
+                }}
+                type="button"
+                aria-label="Ещё"
+              >
                 <MoreVertOutlinedIcon fontSize={"small"} />
               </IconButton>
             </Tooltip>
